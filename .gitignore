@@ -3,3 +3,4 @@ images/
 made_model/
 .idea
 .venv
+evaluation_results.txt
