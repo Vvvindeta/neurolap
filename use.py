@@ -73,6 +73,7 @@ def evaluate_model(model, dataset_path, log_file_name):
     total = 0
     class_correct = defaultdict(int)
     class_total = defaultdict(int)
+    classification_counts = defaultdict(lambda: defaultdict(int))
 
     os.makedirs("use_log", exist_ok=True)
     with open(log_file_name, "a") as log_file:
@@ -90,6 +91,8 @@ def evaluate_model(model, dataset_path, log_file_name):
             predicted_name = dataset.classes[predicted.item()]
 
             log_file.write(f"True label: {label_name}, Predicted label: {predicted_name}\n")
+            classification_counts[label_name][predicted_name] += 1
+
             class_total[label_name] += 1
             if predicted == labels:
                 correct += 1
@@ -103,6 +106,12 @@ def evaluate_model(model, dataset_path, log_file_name):
             class_accuracy = (correct_count / class_count * 100) if class_count > 0 else 0
             log_file.write(
                 f"Class: {class_name}, Total: {class_count}, Correct: {correct_count}, Accuracy: {class_accuracy:.2f}%\n")
+
+        log_file.write("\nClassification Details:\n")
+        for true_class, predictions in classification_counts.items():
+            log_file.write(f"True Class: {true_class}\n")
+            for predicted_class, count in predictions.items():
+                log_file.write(f"  Predicted as {predicted_class}: {count} times\n")
 
         overall_accuracy = correct / total * 100
         log_file.write(f"\nOverall Accuracy: {overall_accuracy:.2f}%\n")
