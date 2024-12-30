@@ -1,6 +1,11 @@
 __pycache__/
+
 images/
 made_model/
+train_log/
+use_log/
+
 .idea
 .venv
-evaluation_results.txt
+
+train2.py
