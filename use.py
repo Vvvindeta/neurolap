@@ -154,3 +154,4 @@ if __name__ == "__main__":
     model = load_model(selected_model["path"], num_classes=len(os.listdir(dataset_path)),
                        model_params=selected_model["params"])
     evaluate_model(model, dataset_path, log_file_name)
+    

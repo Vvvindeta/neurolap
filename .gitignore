@@ -6,6 +6,5 @@ train_log/
 use_log/
 
 .idea
-.venv
 
 train2.py
