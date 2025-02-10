@@ -5,6 +5,10 @@ made_model/
 train_log/
 use_log/
 
+
 .idea
 
 train2.py
+use2.py
+/images.7z
+/p/
